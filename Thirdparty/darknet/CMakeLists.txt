@@ -146,13 +146,15 @@ if(UNIX)
 	include_directories(/usr/local/cuda/include)
 	cuda_add_executable(YOLOv3SE_Train ${SOURCE_FILES} src/main.c)   #Make train executable
 	target_link_libraries(YOLOv3SE_Train cuda pthread m
-			/usr/local/cuda/lib64/libcudnn.so
+      #/usr/local/cuda/lib64/libcudnn.so
+      /usr/lib/x86_64-linux-gnu/libcudnn.so
 	)
 	cuda_add_library(YOLOv3SE SHARED ${SOURCE_FILES} src/main.c src/yolo_v3.c)       #make so file
 	SET_TARGET_PROPERTIES(YOLOv3SE PROPERTIES COMPILE_FLAGS "-D_WINDLL")
 	target_link_libraries(YOLOv3SE cuda pthread m
-			/usr/local/cuda/lib64/libcudnn.so
+      #/usr/local/cuda/lib64/libcudnn.so
 			#/usr/lib/aarch64-linux-gnu/libcudnn.so	# for Jetson Tx2
+      /usr/lib/x86_64-linux-gnu/libcudnn.so
 	)
 	target_include_directories(YOLOv3SE PUBLIC ${PROJECT_SOURCE_DIR}/include)
 endif(UNIX)

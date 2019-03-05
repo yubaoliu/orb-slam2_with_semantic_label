@@ -69,8 +69,8 @@ find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 # adding for point cloud viewer and mapper
 find_package(PCL 1.8 REQUIRED)
-find_package(OpenCV 2.4.8 REQUIRED)
-find_package(CUDA 8.0 REQUIRED)
+find_package(OpenCV 3.1 REQUIRED)
+find_package(CUDA 9.0 REQUIRED)
 find_package(OpenMP)
 
 
@@ -92,6 +92,7 @@ ${PROJECT_SOURCE_DIR}/include
 ${OpenCV_INCLUDE_DIRS}
 # openni
 ${OPENNI_INCLUDE_DIR}
+#${OPENNI2_INCLUDE_DIR}
 ${EIGEN3_INCLUDE_DIR}
 ${Pangolin_INCLUDE_DIRS}
 ${PCL_INCLUDE_DIRS}
@@ -105,7 +106,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/gco-v3.0
 add_definitions(${PCL_DEFINITIONS} )
 
 set(CUDA_INCLUDE_DIR /usr/local/cuda/include)
-set(CUDNN_LIBRARY_DIR /usr/local/cuda-8.0/targets/x86_64-linux/lib)
+set(CUDNN_LIBRARY_DIR /usr/local/cuda-9.0/targets/x86_64-linux/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 
 set(HEADERS
@@ -274,10 +275,12 @@ ${Pangolin_LIBRARIES}
 ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
 ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 ${PROJECT_SOURCE_DIR}/Thirdparty/darknet/build/libYOLOv3SE.so
-/usr/local/cuda/lib64/libcudnn.so
+#/usr/local/cuda/lib64/libcudnn.so
+/usr/lib/x86_64-linux-gnu/libcudnn.so
 ${PCL_LIBRARIES}
 #openni
 ${OPENNI_LIB_DIR}/libOpenNI2.so
+#${OPENNI2_LIB_DIR}/libOpenNI2.so
 m
 dl
 pthread
