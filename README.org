@@ -1,0 +1,40 @@
+* Overview
+- Try to rewrite CMakeList.txt to use the latest darknet  and Cuda 10
+- Compile is Okay, but cannot run properly
+  
+
+* Compile
+** CMakeLists.txt
+- set darknet path
+I'm not using the version in Thirdparty
+
+- Set PCL
+#+begin_example
+find_package(PCL 1.8 REQUIRED HINTS "~/data/software/pcl-1.8")
+#+end_example
+
+- Set OpenNI
+I use system OpenNI lib
+- OpenCV : 3.3.1
+- Cuda
+I am using cuda 10.
+* RUN
+** YOLO
+
+Download yolov3.weights, yolov3.cfg and coco.names from darknet and put them in bin folder. 
+
+** TUM Dataset
+Download a sequence from http://vision.in.tum.de/data/datasets/rgbd-dataset/download and uncompress it to data folder.
+** Associate RGB images and depth images
+#+begin_example
+python associate.py PATH_TO_SEQUENCE/rgb.txt PATH_TO_SEQUENCE/depth.txt > associations.txt
+#+end_example
+** RUN
+#+begin_example
+./rgbd_tum path_to_vocabulary path_to_settings path_to_sequence path_to_association
+
+Eg:
+ ./rgbd_tum ../Vocabulary/ORBvoc.txt ../Examples/RGB-D/TUM2.yaml  ~/data/Dataset/TUM/freiburg2/rgbd_dataset_freiburg2_xyz ~/data/Dataset/TUM/freiburg2/rgbd_dataset_freiburg2_xyz/associations.txt
+#+end_example
+
+
